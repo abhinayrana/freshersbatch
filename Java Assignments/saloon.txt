@@ -1,0 +1,160 @@
+-------------------------customer.java--------------------------
+package assign2;
+import java.util.*;
+public class customer {
+
+	static String name;
+	static String mship;
+	Scanner sc=new Scanner(System.in);
+	
+	
+	
+	
+	public static String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		
+		this.name = name;
+	}
+
+	public static String getMship() {
+		return mship;
+	}
+
+	public void setMship(String mship) {
+		
+		this.mship = mship;
+	}
+
+	
+}
+----------------------------------------visit.java--------------------------
+package assign2;
+import java.util.*;
+//import assign2.customer;
+public class visit {
+     
+     	
+    
+    static String type;
+    String date;
+	static int services;
+	static int product;
+	
+	
+	public static String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		
+		this.type = customer.getMship();
+		System.out.println(type);
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		
+		this.date = date;
+	}
+	public static int getServices() {
+		return services;
+	}
+	public void setServices(int services) {
+		
+		this.services = services;
+	}
+	public static int getProduct() {
+		return product;
+	}
+	public void setProduct(int product) {
+		
+		this.product = product;
+	}
+	
+	void visitor()
+	{
+		 String c1name=customer.getName();
+		System.out.println("The name of the customer is:"+c1name+"visited on"+date);
+		
+	}
+
+}
+----------------------------------------------------------discount.java--------------------------------
+package assign2;
+
+public class Discount {
+	
+	
+	double srv=visit.getServices();
+	 double prod=visit.getProduct();
+	String memtype=customer.getMship();
+	void eprice()
+	{
+		
+		if(memtype.equals("premium"))
+		{
+			 double s=srv;
+			 double ps=prod;
+				srv=s-(srv*0.20);
+			prod=(ps-(prod*0.10));
+			System.out.println("The cost of service and product for premium are"+srv+"     "+prod);
+		}
+		if(memtype.equals("gold"))
+		{
+			 double s=srv; double ps=prod;
+			srv=(s-(srv*0.15));
+			prod=(ps-(prod*0.10));
+			System.out.println("The cost of service and product for gold are"+srv+"   "+prod);
+		}
+		if(memtype.equals("silver"))
+		{
+			 double s=srv; double ps=prod;
+			srv=(s-(srv*0.10));
+			prod=(ps-(prod*0.10));
+			System.out.println("The cost of service and product for silver are"+srv+"   "+prod);
+		}
+	
+}
+	}
+
+--------------------------------------------------------execute.java--------------------------
+package assign2;
+
+import java.util.Scanner;
+
+public class Execute {
+	
+	public static void main(String[] args) {
+	    String name1,type1,date;
+	    int services,product;
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter name");
+	 name1=sc.nextLine();
+		System.out.println("enter the membership type");
+		type1=sc.nextLine();
+		
+		System.out.println("enter date");
+		date=sc.nextLine();
+		
+         customer c=new customer();
+         c.setName(name1);
+       
+         c.setMship(type1);
+         visit v=new visit();
+         v.setDate(date);
+         System.out.println("enter the service cost");
+ 		services=sc.nextInt();
+ 		System.out.println("enter the products cost");
+ 		product=sc.nextInt();
+ 		  v.setServices(services);
+ 		  v.setProduct(product);
+         v.visitor();
+         Discount d=new Discount();
+         d.eprice();
+         
+	}
+
+}

@@ -1,0 +1,115 @@
+--------------------------Account.java----------------
+package com.Assignment1;
+
+public class Account {
+	private int id;
+	private Customer customer;
+	private double bal;
+	private double amt;
+	public Account(int id, Customer customer, double bal) {
+		super();
+		this.id = id;
+		this.customer = customer;
+		this.bal = bal;
+	}
+	public int getId() {
+		return id;
+	}
+	
+	public double getAmt() {
+		return amt;
+	}
+	public Customer getCustomer() {
+		return customer;
+	}
+	public double getBal() {
+		return bal;
+	}
+	
+	public void setBal(double bal) {
+		this.bal = bal;
+	}
+	@Override
+	public String toString() {
+		return "Account [id=" + id + ", customer=" + customer + ", bal=" + bal + ", amt=" + amt + "]";
+	}
+	public void deposit(double amt)
+	{ 
+		System.out.println(amt);
+		bal=this.bal+amt;
+		System.out.println("Balance is added"+bal);
+	}
+	public void withdraw(double amt)
+	{
+		if(amt<=bal)
+		{
+			System.out.println("Money withdrawn");
+			bal=bal-amt;
+			System.out.println("Remaining Balance"+bal);
+		}
+		else {
+			System.out.println("Insufficient Funds");
+		}
+	}
+}
+------------------------------------Customer.java----------------------------
+package com.Assignment1;
+
+public class Customer {
+	
+	private int id;
+	private String name;
+	private char gender;
+	public Customer(int id, String name, char gender) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.gender = gender;
+		
+	}
+	public int getId() {
+		return id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public char getGender() {
+		return gender;
+	}
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", name=" + name + ", gender=" + gender + "]";
+	}
+	
+
+}
+-------------------------------------Bank.java----------------------------
+package com.Assignment1;
+import java.util.*;
+public class Bank {
+
+	public static void main(String[] args) {
+		String name;int id1,id2;char gender;
+		double bal,amt;
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the customer name");
+		name=sc.nextLine();
+		System.out.println("Enter the Id");
+		id1=sc.nextInt();
+		System.out.println("Enter the Id");
+		id2=sc.nextInt();
+		System.out.println("Enter the Gender");
+		gender=sc.next().charAt(0);
+		System.out.println("Enter the Balance");
+		bal=sc.nextDouble();
+		System.out.println("Enter the Amount");
+		amt=sc.nextDouble();
+		Customer c=new Customer(id1,name,gender);
+		Account a=new Account(id2,c,bal);
+		a.deposit(amt);
+		a.withdraw(amt);
+	}
+
+}
